@@ -9,13 +9,13 @@ public class Watch implements Runnable {
     private static final int DELAY = 0;
     private static final int PERIOD = 1000;
     @Getter
-    private int seconds = 0;
+    private volatile int seconds = 0;
     @Getter
     private String name;
     @Getter
     private long thread_id;
     @Getter
-    private boolean isInterrupted;
+    private volatile boolean isInterrupted;
 
     public Watch(String name) {
         this.name = name;
