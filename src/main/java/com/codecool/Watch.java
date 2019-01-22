@@ -14,19 +14,28 @@ public class Watch implements Runnable {
     private String name;
     @Getter
     private long thread_id;
+    @Getter
+    private boolean isInterrupted;
 
     public Watch(String name) {
         this.name = name;
+        this.isInterrupted = false;
     }
 
     @Override
     public void run() {
         thread_id = Thread.currentThread().getId() % 10 + 1;
         Timer timer = new Timer();
+
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
+                if (isInterrupted) this.cancel();
                 seconds++;
             }
         }, DELAY, PERIOD);
+    }
+
+    public void interrupt() {
+        this.isInterrupted = true;
     }
 }
