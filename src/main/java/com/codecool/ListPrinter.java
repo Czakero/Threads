@@ -15,6 +15,7 @@ public class ListPrinter implements Runnable {
             System.out.println("Thread id: " + watch.getThread_id());
             System.out.println("Watch name: " + watch.getName());
             System.out.println("Watch run-time: " + watch.getSeconds() + " seconds");
+            System.out.println("Is interrupted: " + watch.isInterrupted());
             System.out.println("--------------------------------------------------");
         }
     }
