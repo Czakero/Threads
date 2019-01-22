@@ -12,6 +12,7 @@ public class App
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         List<Watch> watches = new ArrayList<>();
 
+
         Watch watch0 = new Watch("Test0");
         Watch watch1 = new Watch("Test1");
         Watch watch2 = new Watch("Test2");
@@ -21,16 +22,14 @@ public class App
         ListPrinter listPrinter = new ListPrinter(watches);
 
         executorService.execute(watch0);
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
         executorService.execute(watch1);
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(3);
         executorService.execute(watch2);
-        System.out.println("5 SECONDS!");
         TimeUnit.SECONDS.sleep(5);
         executorService.execute(listPrinter);
-
-
-
-
+        watch1.interrupt();
+        TimeUnit.SECONDS.sleep(5);
+        executorService.execute(listPrinter);
     }
 }
